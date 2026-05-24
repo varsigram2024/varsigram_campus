@@ -83,7 +83,7 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
             ))}
           </nav>
 
-          {/* <BottomActions /> */}
+          <BottomActions />
 
           {/* Footer */}
           <div className="border-t border-gray-200 p-4">

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Button } from '../../../components/Button';
-import { Logo } from '../../../components/Logo';
 
 export const LibraryIndex = () => {
   const [userName, setUserName] = useState<string | null>(null);

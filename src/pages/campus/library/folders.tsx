@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Upload, Camera, Plus, FileText } from 'lucide-react';
+import { Upload, Camera, Plus } from 'lucide-react';
 
 const sampleFolders = Array.from({ length: 12 }).map((_, i) => ({
   id: String(i + 1),
