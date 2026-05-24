@@ -1,0 +1,89 @@
+import { Building2 } from 'lucide-react';
+import { useState } from 'react';
+import { PageHeader } from '../../components/PageHeader';
+import { SearchBar } from '../../components/SearchBar';
+import { RoomSection, type RoomItemData } from '../../components/RoomSection';
+import { BottomActions } from '../../components/CampusPageLayout';
+
+const mainRoomsData: RoomItemData[] = [
+  { id: 'announcement', name: 'Announcement', hasNotification: true },
+  { id: 'inter-dept-discourse', name: 'Inter-Department Discourse' },
+  { id: 'faculty-staff-room', name: 'Faculty Staff Room' },
+];
+
+const departmentsData: RoomItemData[] = [
+  { id: 'economics', name: 'Economics' },
+  { id: 'political-science', name: 'Political Science' },
+  { id: 'geography', name: 'Geography' },
+  { id: 'social-work', name: 'Social Work' },
+  { id: 'sociology', name: 'Sociology' },
+  { id: 'psychology', name: 'Psychology' },
+];
+
+const otherRoomsData: RoomItemData[] = [
+  { id: 'political-science-other', name: 'Political Science' },
+  { id: 'geography-other', name: 'Geography' },
+  { id: 'social-work-other', name: 'Social Work' },
+  { id: 'sociology-other', name: 'Sociology' },
+  { id: 'psychology-other', name: 'Psychology' },
+];
+
+export const Faculty = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeRoom, setActiveRoom] = useState<string | null>(null);
+
+  const handleRoomClick = (roomId: string) => {
+    setActiveRoom(roomId);
+  };
+
+  return (
+    <div className="flex flex-col h-screen bg-white">
+      {/* Header */}
+      <PageHeader
+        icon={<Building2 size={24} className="text-[#750015]" />}
+        title="Faculty of Social Sciences"
+      />
+
+      {/* Search Bar */}
+      <SearchBar
+        placeholder="Search messages"
+        value={searchQuery}
+        onSearch={setSearchQuery}
+      />
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto divide-y divide-gray-200">
+        <div className="px-3 py-4">
+          <RoomSection
+            title="Social Sciences"
+            rooms={mainRoomsData}
+            onRoomClick={handleRoomClick}
+            activeRoomId={activeRoom}
+          />
+        </div>
+
+        <div className="px-3 py-4">
+          <RoomSection
+            title="Departments"
+            rooms={departmentsData}
+            onRoomClick={handleRoomClick}
+            activeRoomId={activeRoom}
+          />
+        </div>
+
+        <div className="px-3 py-4">
+          <RoomSection
+            title="Other rooms"
+            rooms={otherRoomsData}
+            isCollapsed={true}
+            onRoomClick={handleRoomClick}
+            activeRoomId={activeRoom}
+          />
+        </div>
+        <BottomActions />
+      </div>
+
+     
+    </div>
+  );
+};
