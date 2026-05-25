@@ -1,4 +1,3 @@
-import { Video, LogIn } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
 

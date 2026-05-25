@@ -1,4 +1,4 @@
-import { ClipboardList, ArrowLeft, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Button } from '../../components/Button';
 
 interface RoomTestProps {
