@@ -16,6 +16,7 @@ import { BottomNav } from './components/BottomNav';
 import { RoomsIndex, type CourseRoom } from './pages/rooms';
 import { RoomChat } from './pages/rooms/chat';
 import { RoomTest } from './pages/rooms/test';
+import TestQuestions from './pages/rooms/test-questions';
 import { CampusSidebar } from './components/CampusSidebar';
 
 type CampusPage = 'campus' | 'faculty' | 'department';
@@ -33,7 +34,8 @@ type View =
   | 'classroom-lecture'
   | 'rooms'
   | 'room-chat'
-  | 'room-test';
+  | 'room-test'
+  | 'room-test-questions';
 
 const ROOMS_STORAGE_KEY = 'varsigram-campus-course-rooms';
 
@@ -72,6 +74,7 @@ const getViewFromPath = (pathname: string): View => {
   if (pathname.includes('/campus/classroom')) return 'classroom';
   if (pathname.includes('/campus/library/folders')) return 'library-folders';
   if (pathname.includes('/campus/library')) return 'library';
+  if (pathname.includes('/rooms/test-questions')) return 'room-test-questions';
   if (pathname.includes('/rooms/test')) return 'room-test';
   if (pathname.includes('/rooms/chat')) return 'room-chat';
   if (pathname.includes('/rooms')) return 'rooms';
@@ -84,7 +87,7 @@ const getViewFromPath = (pathname: string): View => {
 };
 
 const getBottomSectionFromView = (view: View): BottomSection | null => {
-  if (view === 'rooms' || view === 'room-chat' || view === 'room-test') return 'rooms';
+  if (view === 'rooms' || view === 'room-chat' || view === 'room-test' || view === 'room-test-questions') return 'rooms';
   if (view === 'campus' || view === 'library' || view === 'library-folders' || view === 'classroom' || view === 'classroom-lecture') {
     return 'campus';
   }
@@ -254,6 +257,10 @@ function App() {
           <RoomTest
             onBack={() => navigate('/rooms')}
           />,
+        );
+      case 'room-test-questions':
+        return renderWithBottomNav(
+          <TestQuestions />,
         );
       case 'welcome':
       default:

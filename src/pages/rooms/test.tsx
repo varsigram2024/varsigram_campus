@@ -37,8 +37,15 @@ export const RoomTest = ({ onBack }: RoomTestProps) => {
 
             <div className="bg-white p-2">
               
-              <Button fullWidth variant="outline" onClick={() => alert('Join Test')}>
-                Join Test
+              <Button
+                fullWidth
+                variant="outline"
+                onClick={() => {
+                  window.history.pushState({}, '', '/rooms/test-questions');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+              >
+                Take Test
               </Button>
             </div>
           </div>
