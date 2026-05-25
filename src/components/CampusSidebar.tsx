@@ -1,7 +1,6 @@
 import { Menu, X, Home, Building2, Users } from 'lucide-react';
 import { useState } from 'react';
 import { Logo } from './Logo';
-import { BottomActions } from './CampusPageLayout';
 
 type CampusPage = 'campus' | 'faculty' | 'department';
 
@@ -36,9 +35,9 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#750015] text-white lg:hidden"
+        className="fixed top-4 left-4 z-50 inline-flex h-6 w-6 items-center justify-center rounded-lg bg-[#750015] text-white lg:hidden"
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={12} /> : <Menu size={12} />}
       </button>
 
       {/* Sidebar Overlay - Mobile */}
@@ -77,13 +76,13 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
-                {link.icon}
+                {/* {link.icon} */}
                 <span className="font-medium">{link.label}</span>
               </button>
             ))}
           </nav>
 
-          <BottomActions />
+          
 
           {/* Footer */}
           <div className="border-t border-gray-200 p-4">

@@ -41,7 +41,7 @@ export const RoomsIndex = ({ rooms, onCreateRoom, onOpenRoom }: RoomsIndexProps)
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f2f3] pb-28">
+    <div className="min-h-screen bg-[#ffffff] pb-28">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
         <div className="flex items-start justify-between gap-4">
           <div>

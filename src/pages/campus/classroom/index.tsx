@@ -49,36 +49,28 @@ const ClassroomIndex = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f2f3] lg:ml-0 flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-[#ffffff] lg:ml-0 flex flex-col items-center justify-center p-6">
       {view === 'index' && (
         <>
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Virtual Classroom</h1>
-            <p className="text-gray-600">Start or join a live lecture session</p>
+            <img src="/rafiki.svg" alt="Join room illustration" className="w-64 h-64 object-contain" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
-            <div className="rounded-lg bg-white p-8 shadow-lg border border-gray-100">
-              <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-[#750015]/10 mb-4">
-                <Video size={32} className="text-[#750015]" />
-              </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Create Classroom</h2>
-              <p className="text-sm text-gray-600 mb-6">
-                Start a new live lecture session and invite students
-              </p>
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 mb-4">Welcome to the Classroom</h1>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 w-full max-w-2xl">
+            <div className="bg-white p-8">
+              
+              
               <Button fullWidth onClick={() => setShowCreateModal(true)}>
                 Create Classroom
               </Button>
             </div>
 
-            <div className="rounded-lg bg-white p-8 shadow-lg border border-gray-100">
-              <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-[#750015]/10 mb-4">
-                <LogIn size={32} className="text-[#750015]" />
-              </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Join Classroom</h2>
-              <p className="text-sm text-gray-600 mb-6">
-                Join an existing classroom using an invitation code
-              </p>
+            <div className="bg-white p-8">
+              
               <Button fullWidth variant="outline" onClick={() => setView('join')}>
                 Join Classroom
               </Button>
@@ -128,9 +120,11 @@ const JoinClassroomForm = ({ onJoin, onBack }: JoinClassroomFormProps) => {
         ← Back
       </button>
 
+ <img src="/cuate.svg" alt="Join room illustration" className="w-64 h-64 object-contain" />
+
+
       <div className="rounded-lg bg-white p-8 shadow-lg">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Join Classroom</h2>
-        <p className="text-sm text-gray-600 mb-6">Enter the classroom code provided by your instructor</p>
+       
 
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">Classroom Code</label>

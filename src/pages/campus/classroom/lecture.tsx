@@ -39,107 +39,128 @@ export const LectureRoom = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Lecture Room</h1>
-            <div className="flex gap-6 mt-2 text-sm">
-              <button
-                className={`pb-2 border-b-2 transition ${
-                  classMode === 'case-study'
-                    ? 'border-[#750015] text-white'
-                    : 'border-transparent text-gray-400 hover:text-white'
-                }`}
-                onClick={() => setClassMode('case-study')}
-              >
-                Class mode
-              </button>
-              <button
-                className={`pb-2 border-b-2 transition ${
-                  classMode === 'questions'
-                    ? 'border-[#750015] text-white'
-                    : 'border-transparent text-gray-400 hover:text-white'
-                }`}
-                onClick={() => setClassMode('questions')}
-              >
-                Participants ({sampleParticipants.length})
-              </button>
-            </div>
+      <div className="bg-white px-6 py-4 border-b border-gray-200 sticky top-0 z-10">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Lecture Room</h1>
+          <div className="flex gap-8 mt-3 text-sm">
+            <button
+              className={`pb-2 border-b-2 transition font-medium ${
+                classMode === 'case-study'
+                  ? 'border-[#750015] text-[#750015]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+              onClick={() => setClassMode('case-study')}
+            >
+              Live
+            </button>
+            <button
+              className={`pb-2 border-b-2 transition font-medium ${
+                classMode === 'case-study'
+                  ? 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-[#750015] text-[#750015]'
+              }`}
+              onClick={() => setClassMode('questions')}
+            >
+              Class mode
+            </button>
+            <button
+              className="pb-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition font-medium"
+            >
+              Participants ({sampleParticipants.length})
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden">
-        {/* Main Video Area */}
-        <div className="flex-1 flex flex-col p-6">
-          {/* Lecture Info */}
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold">Fundamentals of Macro Economics</h2>
-            <p className="text-gray-400 text-sm mt-1">Monday, 20th of May 2025 | 1pm - 5pm</p>
-            <div className="flex items-center gap-2 mt-2 text-[#750015]">
-              <span className="w-2 h-2 bg-[#750015] rounded-full"></span>
-              <span className="font-semibold">{formatTime(elapsedTime)}</span>
-            </div>
-          </div>
-
-          {/* Video Feed */}
-          <div className="flex-1 bg-gray-800 rounded-lg overflow-hidden mb-6 flex items-center justify-center relative group">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
-              alt="Instructor"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-6 left-6 bg-gray-900/80 rounded-lg p-4 backdrop-blur">
-              <p className="text-white font-semibold">Prof. Adeola Ajanaku</p>
-            </div>
-          </div>
-
-          {/* Bottom Controls */}
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={() => setIsMuted(!isMuted)}
-              className={`rounded-full p-4 transition ${
-                isMuted ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-700 hover:bg-gray-600'
-              }`}
-            >
-              <Mic size={24} />
-            </button>
-            <button className="rounded-full p-4 bg-red-600 hover:bg-red-700 transition">
-              <Phone size={24} />
-            </button>
-            <button className="rounded-full p-4 bg-gray-700 hover:bg-gray-600 transition">
-              <MessageSquare size={24} />
-            </button>
-            <button className="rounded-full p-4 bg-gray-700 hover:bg-gray-600 transition">
-              <Share2 size={24} />
-            </button>
-            <button className="rounded-full p-4 bg-gray-700 hover:bg-gray-600 transition">
-              <MoreVertical size={24} />
-            </button>
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto bg-gray-50 px-6 py-6">
+        {/* Lecture Info */}
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold text-gray-900">Fundamentals of Macro Economics</h2>
+          <p className="text-gray-500 text-sm mt-1">Monday, 20th of May 2025 | 1pm - 5pm</p>
+          <div className="flex items-center gap-2 mt-2 text-[#750015]">
+            <span className="w-2 h-2 bg-[#750015] rounded-full"></span>
+            <span className="font-semibold text-sm">{formatTime(elapsedTime)}</span>
           </div>
         </div>
 
-        {/* Participants Panel */}
-        {classMode === 'questions' && (
-          <div className="w-80 bg-gray-900 border-l border-gray-700 p-6 overflow-y-auto">
-            <h3 className="text-lg font-semibold mb-4">Participants</h3>
-            <div className="space-y-3">
-              {sampleParticipants.map((participant) => (
-                <div key={participant.id} className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg transition">
-                  <div className="w-10 h-10 rounded-full bg-[#750015] flex items-center justify-center text-sm font-bold">
-                    {participant.initial}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{participant.name}</p>
-                    {participant.isInstructor && <p className="text-xs text-[#750015]">Instructor</p>}
-                  </div>
-                </div>
-              ))}
+        {/* Main Video Feed */}
+        <div className="mb-6">
+          <div className="w-full aspect-video bg-gray-300 rounded-xl overflow-hidden flex items-center justify-center relative group">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=675&fit=crop"
+              alt="Instructor"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-4 left-4 bg-black/60 rounded-lg p-3 backdrop-blur-sm">
+              <p className="text-white font-semibold text-sm">Prof. Adeola Ajanaku</p>
             </div>
           </div>
-        )}
+        </div>
+
+        {/* Bottom Controls */}
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className={`rounded-full p-3 transition ${
+              isMuted ? 'bg-red-600 hover:bg-red-700' : 'bg-gray-300 hover:bg-gray-400'
+            }`}
+          >
+            <Mic size={20} className={isMuted ? 'text-white' : 'text-gray-700'} />
+          </button>
+          <button className="rounded-full p-3 bg-red-600 hover:bg-red-700 transition">
+            <Phone size={20} className="text-white" />
+          </button>
+          <button className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition">
+            <MessageSquare size={20} className="text-gray-700" />
+          </button>
+          <button className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition">
+            <Share2 size={20} className="text-gray-700" />
+          </button>
+          <button className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition">
+            <MoreVertical size={20} className="text-gray-700" />
+          </button>
+        </div>
+
+        {/* Participants Grid */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Participants</h3>
+          <div className="grid grid-cols-3 gap-3">
+            {sampleParticipants.map((participant) => (
+              <div key={participant.id} className="relative group">
+                <div className="aspect-square bg-gradient-to-br from-pink-100 to-pink-50 rounded-lg overflow-hidden flex items-center justify-center relative">
+                  {/* Placeholder for video feed */}
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                    {participant.id === '1' && (
+                      <img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+                        alt={participant.name}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                    {participant.id !== '1' && (
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-[#750015] flex items-center justify-center text-white font-bold text-lg mb-2">
+                          {participant.initial}
+                        </div>
+                        <p className="text-xs text-gray-600 font-medium text-center px-2">{participant.name.split(' ')[0]}</p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="absolute bottom-2 right-2 flex gap-1">
+                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full text-xs">●</span>
+                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full text-xs">●</span>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-700 font-medium mt-2 text-center truncate">
+                  {participant.name.split(' ')[0]}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
