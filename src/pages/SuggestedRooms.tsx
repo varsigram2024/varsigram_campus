@@ -19,22 +19,22 @@ interface SuggestedRoomsProps {
 const defaultRooms: Room[] = [
   {
     id: '1',
-    name: 'Economics Study Group',
-    department: 'Department of Economics',
+    name: 'Department of Economics',
+    department: '',
     memberCount: 234,
   },
-  {
-    id: '2',
-    name: 'Economics Research Hub',
-    department: 'Department of Economics',
-    memberCount: 156,
-  },
-  {
-    id: '3',
-    name: 'Economics Career Network',
-    department: 'Department of Economics',
-    memberCount: 89,
-  },
+  // {
+  //   id: '2',
+  //   name: 'Economics Research Hub',
+  //   department: 'Department of Economics',
+  //   memberCount: 156,
+  // },
+  // {
+  //   id: '3',
+  //   name: 'Economics Career Network',
+  //   department: 'Department of Economics',
+  //   memberCount: 89,
+  // },
 ];
 
 export const SuggestedRooms = ({ 
@@ -97,7 +97,6 @@ export const SuggestedRooms = ({
               ) : (
                 <>
                   Request to join
-                  <ChevronRight className="w-4 h-4" />
                 </>
               )}
             </button>

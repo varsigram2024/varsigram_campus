@@ -1,5 +1,6 @@
 import { Mic, Phone, MessageSquare, Share2, MoreVertical } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { AttendanceSheet } from './attendance-sheet';
 
 interface Participant {
   id: string;
@@ -22,6 +23,7 @@ const sampleParticipants: Participant[] = [
 export const LectureRoom = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [classMode, setClassMode] = useState<'case-study' | 'questions'>('case-study');
+  const [showAttendanceSheet, setShowAttendanceSheet] = useState(false);
 
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -37,6 +39,17 @@ export const LectureRoom = () => {
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
+
+  if (showAttendanceSheet) {
+    return (
+      <AttendanceSheet
+        onBack={() => setShowAttendanceSheet(false)}
+        classroomName="Fundamentals of Macro Economics"
+        classDate="Monday, 20th of May 2025"
+        classDuration="1pm - 5pm"
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -90,7 +103,7 @@ export const LectureRoom = () => {
         <div className="mb-6">
           <div className="w-full aspect-video bg-gray-300 rounded-xl overflow-hidden flex items-center justify-center relative group">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=675&fit=crop"
+              src="/ajanaku.jpg"
               alt="Instructor"
               className="w-full h-full object-cover"
             />
@@ -119,7 +132,10 @@ export const LectureRoom = () => {
           <button className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition">
             <Share2 size={20} className="text-gray-700" />
           </button>
-          <button className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition">
+          <button
+            onClick={() => setShowAttendanceSheet(true)}
+            className="rounded-full p-3 bg-gray-300 hover:bg-gray-400 transition"
+          >
             <MoreVertical size={20} className="text-gray-700" />
           </button>
         </div>
@@ -135,7 +151,7 @@ export const LectureRoom = () => {
                   <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                     {participant.id === '1' && (
                       <img
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+                        src="/ajanaku.jpg"
                         alt={participant.name}
                         className="w-full h-full object-cover"
                       />

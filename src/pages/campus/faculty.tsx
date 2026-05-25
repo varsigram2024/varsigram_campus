@@ -1,4 +1,4 @@
-import { Building2 } from 'lucide-react';
+import { Building2, Bell, Users, TrendingUp, Globe, Heart, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import { PageHeader } from '../../components/PageHeader';
 import { SearchBar } from '../../components/SearchBar';
@@ -6,26 +6,26 @@ import { RoomSection, type RoomItemData } from '../../components/RoomSection';
 import { BottomActions } from '../../components/CampusPageLayout';
 
 const mainRoomsData: RoomItemData[] = [
-  { id: 'announcement', name: 'Announcement', hasNotification: true },
-  { id: 'inter-dept-discourse', name: 'Inter-Department Discourse' },
-  { id: 'faculty-staff-room', name: 'Faculty Staff Room' },
+  { id: 'announcement', name: 'Announcement', hasNotification: true, icon: <Bell size={16} /> },
+  { id: 'inter-dept-discourse', name: 'Inter-Department Discourse', icon: <Users size={16} /> },
+  { id: 'faculty-staff-room', name: 'Faculty Staff Room', icon: <Users size={16} /> },
 ];
 
 const departmentsData: RoomItemData[] = [
-  { id: 'economics', name: 'Economics' },
-  { id: 'political-science', name: 'Political Science' },
-  { id: 'geography', name: 'Geography' },
-  { id: 'social-work', name: 'Social Work' },
-  { id: 'sociology', name: 'Sociology' },
-  { id: 'psychology', name: 'Psychology' },
+  { id: 'economics', name: 'Economics', icon: <TrendingUp size={16} /> },
+  { id: 'political-science', name: 'Political Science', icon: <BookOpen size={16} /> },
+  { id: 'geography', name: 'Geography', icon: <Globe size={16} /> },
+  { id: 'social-work', name: 'Social Work', icon: <Heart size={16} /> },
+  { id: 'sociology', name: 'Sociology', icon: <Users size={16} /> },
+  { id: 'psychology', name: 'Psychology', icon: <BookOpen size={16} /> },
 ];
 
 const otherRoomsData: RoomItemData[] = [
-  { id: 'political-science-other', name: 'Political Science' },
-  { id: 'geography-other', name: 'Geography' },
-  { id: 'social-work-other', name: 'Social Work' },
-  { id: 'sociology-other', name: 'Sociology' },
-  { id: 'psychology-other', name: 'Psychology' },
+  { id: 'political-science-other', name: 'Political Science', icon: <BookOpen size={16} /> },
+  { id: 'geography-other', name: 'Geography', icon: <Globe size={16} /> },
+  { id: 'social-work-other', name: 'Social Work', icon: <Heart size={16} /> },
+  { id: 'sociology-other', name: 'Sociology', icon: <Users size={16} /> },
+  { id: 'psychology-other', name: 'Psychology', icon: <BookOpen size={16} /> },
 ];
 
 export const Faculty = () => {

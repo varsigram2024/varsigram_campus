@@ -1,4 +1,4 @@
-import { Building2 } from 'lucide-react';
+import { Building2, Bell, Users, BookOpen, Briefcase, Zap, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { PageHeader } from '../../components/PageHeader';
 import { SearchBar } from '../../components/SearchBar';
@@ -7,23 +7,23 @@ import { BottomActions } from '../../components/CampusPageLayout';
 
 
 const mainRoomsData: RoomItemData[] = [
-  { id: 'announcement', name: 'Announcement', hasNotification: true },
-  { id: 'inter-level-discourse', name: 'Inter-Level Discourse' },
-  { id: 'dept-staff-room', name: 'Department Staff Room' },
+  { id: 'announcement', name: 'Announcement', hasNotification: true, icon: <Bell size={16} /> },
+  { id: 'inter-level-discourse', name: 'Inter-Level Discourse', icon: <Users size={16} /> },
+  { id: 'dept-staff-room', name: 'Department Staff Room', icon: <Users size={16} /> },
 ];
 
 const levelsData: RoomItemData[] = [
-  { id: '400-level', name: '400 Level' },
-  { id: '300-level', name: '300 Level' },
-  { id: '200-level', name: '200 Level' },
-  { id: '100-level', name: '100 Level' },
+  { id: '400-level', name: '400 Level', icon: <BookOpen size={16} /> },
+  { id: '300-level', name: '300 Level', icon: <BookOpen size={16} /> },
+  { id: '200-level', name: '200 Level', icon: <BookOpen size={16} /> },
+  { id: '100-level', name: '100 Level', icon: <BookOpen size={16} /> },
 ];
 
 const otherRoomsData: RoomItemData[] = [
-  { id: 'study-group', name: 'Study Group' },
-  { id: 'projects', name: 'Projects' },
-  { id: 'career', name: 'Career Development' },
-  { id: 'events', name: 'Department Events' },
+  { id: 'study-group', name: 'Study Group', icon: <Users size={16} /> },
+  { id: 'projects', name: 'Projects', icon: <Zap size={16} /> },
+  { id: 'career', name: 'Career Development', icon: <Briefcase size={16} /> },
+  { id: 'events', name: 'Department Events', icon: <Calendar size={16} /> },
 ];
 export const Department = () => {
   const [searchQuery, setSearchQuery] = useState('');

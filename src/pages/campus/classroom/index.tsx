@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../../../components/Button';
+import { AttendanceSignInModal } from '../../../components/modals/AttendanceSignInModal';
 
 type ClassroomView = 'index' | 'create' | 'join';
 
@@ -13,7 +14,9 @@ interface CreateClassroomState {
 const ClassroomIndex = () => {
   const [view, setView] = useState<ClassroomView>('index');
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showAttendanceModal, setShowAttendanceModal] = useState(false);
   const [classroomCode, setClassroomCode] = useState<string | null>(null);
+  const [pendingCode, setPendingCode] = useState<string | null>(null);
   const [formData, setFormData] = useState<CreateClassroomState>({
     title: '',
     description: '',
@@ -42,8 +45,17 @@ const ClassroomIndex = () => {
       return;
     }
 
+    // Store the code and show attendance modal
+    setPendingCode(enteredCode);
+    setShowAttendanceModal(true);
+  };
+
+  const handleAttendanceSignIn = (name: string, matricNumber: string) => {
+    // Store attendance information (would be sent to backend)
+    console.log('Attendance signed in:', { name, matricNumber, code: pendingCode });
+    
     // Navigate to lecture room
-    window.history.pushState({}, '', `/campus/classroom/lecture?code=${enteredCode}&mode=joiner`);
+    window.history.pushState({}, '', `/campus/classroom/lecture?code=${pendingCode}&mode=joiner&name=${encodeURIComponent(name)}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
@@ -96,6 +108,19 @@ const ClassroomIndex = () => {
           onNavigateToLecture={() => {
             // Already navigated in handleCreateClassroom
           }}
+        />
+      )}
+
+      {/* Attendance Sign In Modal */}
+      {showAttendanceModal && pendingCode && (
+        <AttendanceSignInModal
+          classroomCode={pendingCode}
+          classroomName="Fundamentals of Macro Economics"
+          onClose={() => {
+            setShowAttendanceModal(false);
+            setPendingCode(null);
+          }}
+          onConfirm={handleAttendanceSignIn}
         />
       )}
     </div>
