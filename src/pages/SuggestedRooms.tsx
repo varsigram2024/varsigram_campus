@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Users, Key } from 'lucide-react';
+import { Key } from 'lucide-react';
 
 interface Room {
   id: string;

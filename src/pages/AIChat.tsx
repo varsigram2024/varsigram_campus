@@ -48,20 +48,6 @@ export const AIChat = () => {
     }
   };
 
-  const suggestions = [
-    '📚 Explain Economics',
-    '🧠 Generate Quiz',
-    '📄 Summarize Notes',
-    '📊 Solve Statistics',
-  ];
-
-  const quickActions = [
-    'Explain Topic',
-    'Create Quiz',
-    'Flashcards',
-    'Summarize Notes',
-  ];
-
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#F9F4F5]">
       {/* Background Glows */}
