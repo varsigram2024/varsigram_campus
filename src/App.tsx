@@ -13,6 +13,7 @@ import { LibraryFolders } from './pages/campus/library/folders';
 import { Classroom } from './pages/campus/classroom/index';
 import { LectureRoom } from './pages/campus/classroom/lecture';
 import { BottomNav } from './components/BottomNav';
+import { AIChat } from './pages/AIChat';
 import { RoomsIndex, type CourseRoom } from './pages/rooms';
 import { RoomChat } from './pages/rooms/chat';
 import { RoomTest } from './pages/rooms/test';
@@ -35,7 +36,8 @@ type View =
   | 'rooms'
   | 'room-chat'
   | 'room-test'
-  | 'room-test-questions';
+  | 'room-test-questions'
+  | 'ai-chat';
 
 const ROOMS_STORAGE_KEY = 'varsigram-campus-course-rooms';
 
@@ -70,6 +72,7 @@ const getCampusPageFromPath = (pathname: string): CampusPage => {
 };
 
 const getViewFromPath = (pathname: string): View => {
+  if (pathname.includes('/ai-chat')) return 'ai-chat';
   if (pathname.includes('/campus/classroom/lecture')) return 'classroom-lecture';
   if (pathname.includes('/campus/classroom')) return 'classroom';
   if (pathname.includes('/campus/library/folders')) return 'library-folders';
@@ -154,35 +157,6 @@ function App() {
 
   const bottomSection = getBottomSectionFromView(view);
 
-  const renderWithBottomNav = (content: React.ReactNode) => (
-    <div className="min-h-screen pb-24">
-      {content}
-      {bottomSection && (
-        <BottomNav
-          activeSection={bottomSection}
-          onNavigate={(section) => {
-            navigate(section === 'campus' ? '/campus' : '/rooms');
-          }}
-        />
-      )}
-    </div>
-  );
-
-  const renderCampusShell = (content: React.ReactNode) => (
-    renderWithBottomNav(
-      <div className="flex">
-        <CampusSidebar
-          currentPage={campusPage}
-          onPageChange={(page) => {
-            setCampusPage(page);
-            navigate(`/campus/${page === 'campus' ? '' : page}`);
-          }}
-        />
-        <div className="flex-1">{content}</div>
-      </div>,
-    )
-  );
-
   const content = (() => {
     switch (view) {
       case 'signup':
@@ -219,49 +193,103 @@ function App() {
           />
         );
       case 'library':
-        return renderCampusShell(<LibraryIndex />);
+        return (
+          <div className="flex">
+            <CampusSidebar
+              currentPage={campusPage}
+              onPageChange={(page) => {
+                setCampusPage(page);
+                navigate(`/campus/${page === 'campus' ? '' : page}`);
+              }}
+              onAIChatClick={() => navigate('/ai-chat')}
+            />
+            <div className="flex-1"><LibraryIndex /></div>
+          </div>
+        );
       case 'library-folders':
-        return renderCampusShell(<LibraryFolders />);
+        return (
+          <div className="flex">
+            <CampusSidebar
+              currentPage={campusPage}
+              onPageChange={(page) => {
+                setCampusPage(page);
+                navigate(`/campus/${page === 'campus' ? '' : page}`);
+              }}
+              onAIChatClick={() => navigate('/ai-chat')}
+            />
+            <div className="flex-1"><LibraryFolders /></div>
+          </div>
+        );
       case 'classroom':
-        return renderCampusShell(<Classroom />);
+        return (
+          <div className="flex">
+            <CampusSidebar
+              currentPage={campusPage}
+              onPageChange={(page) => {
+                setCampusPage(page);
+                navigate(`/campus/${page === 'campus' ? '' : page}`);
+              }}
+              onAIChatClick={() => navigate('/ai-chat')}
+            />
+            <div className="flex-1"><Classroom /></div>
+          </div>
+        );
       case 'classroom-lecture':
-        return renderCampusShell(<LectureRoom />);
+        return (
+          <div className="flex">
+            <CampusSidebar
+              currentPage={campusPage}
+              onPageChange={(page) => {
+                setCampusPage(page);
+                navigate(`/campus/${page === 'campus' ? '' : page}`);
+              }}
+              onAIChatClick={() => navigate('/ai-chat')}
+            />
+            <div className="flex-1"><LectureRoom /></div>
+          </div>
+        );
       case 'campus':
-        return renderCampusShell(
-          <>
-            {campusPage === 'campus' && <Campus />}
-            {campusPage === 'faculty' && <Faculty />}
-            {campusPage === 'department' && <Department />}
-          </>,
+        return (
+          <div className="flex">
+            <CampusSidebar
+              currentPage={campusPage}
+              onPageChange={(page) => {
+                setCampusPage(page);
+                navigate(`/campus/${page === 'campus' ? '' : page}`);
+              }}
+              onAIChatClick={() => navigate('/ai-chat')}
+            />
+            <div className="flex-1">
+              {campusPage === 'campus' && <Campus />}
+              {campusPage === 'faculty' && <Faculty />}
+              {campusPage === 'department' && <Department />}
+            </div>
+          </div>
         );
       case 'rooms':
-        return renderWithBottomNav(
+        return (
           <RoomsIndex
             rooms={rooms}
             onCreateRoom={addRoom}
             onOpenRoom={openRoom}
-          />,
+          />
         );
       case 'room-chat':
-        return renderWithBottomNav(
+        return (
           <RoomChat
             room={activeRoom}
             onBack={() => navigate('/rooms')}
             onOpenTest={() => navigate('/rooms/test')}
             onOpenVirtualClassroom={() => navigate('/campus/classroom')}
             onOpenLibrary={() => navigate('/campus/library')}
-          />,
+          />
         );
       case 'room-test':
-        return renderWithBottomNav(
-          <RoomTest
-            onBack={() => navigate('/rooms')}
-          />,
-        );
+        return <RoomTest onBack={() => navigate('/rooms')} />;
       case 'room-test-questions':
-        return renderWithBottomNav(
-          <TestQuestions />,
-        );
+        return <TestQuestions />;
+      case 'ai-chat':
+        return <AIChat />;
       case 'welcome':
       default:
         return <Welcome onGetStarted={() => navigate('/signup')} onLogin={() => navigate('/login')} />;
@@ -270,7 +298,19 @@ function App() {
 
   return (
     <SignUpProvider>
-      {content}
+      <div className="flex min-h-screen flex-col">
+        <main className="flex-1">{content}</main>
+        {bottomSection && (
+          <footer className="shrink-0 sticky bottom-0">
+            <BottomNav
+              activeSection={bottomSection}
+              onNavigate={(section) => {
+                navigate(section === 'campus' ? '/campus' : '/rooms');
+              }}
+            />
+          </footer>
+        )}
+      </div>
     </SignUpProvider>
   );
 }

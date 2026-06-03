@@ -7,6 +7,7 @@ type CampusPage = 'campus' | 'faculty' | 'department';
 type CampusSidebarProps = {
   currentPage: CampusPage;
   onPageChange: (page: CampusPage) => void;
+  onAIChatClick?: () => void;
 };
 
 const sidebarLinks: { id: CampusPage; label: string; icon: React.ReactNode }[] = [
@@ -27,7 +28,7 @@ const sidebarLinks: { id: CampusPage; label: string; icon: React.ReactNode }[] =
   },
 ];
 
-export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps) => {
+export const CampusSidebar = ({ currentPage, onPageChange, onAIChatClick }: CampusSidebarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -43,7 +44,7 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
       {/* Sidebar Overlay - Mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/30 lg:hidden"
+          className="fixed inset-0 z-30 bg-black/60 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -62,7 +63,7 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 space-y-2 px-4 py-6">
+          <nav className="flex-1 flex flex-col items-center justify-center space-y-2 px-4 py-6">
             {sidebarLinks.map((link) => (
               <button
                 key={link.id}
@@ -86,8 +87,11 @@ export const CampusSidebar = ({ currentPage, onPageChange }: CampusSidebarProps)
 
           {/* Footer */}
           <div className="border-t border-gray-200 p-4">
-            <button className="w-full rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-200">
-              Logout
+            <button
+              onClick={onAIChatClick}
+              className="w-full rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+            >
+              AI Chat
             </button>
           </div>
         </div>

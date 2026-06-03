@@ -62,9 +62,6 @@ export const SuggestedRooms = ({
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
           Suggested Rooms for you
         </h2>
-        <p className="text-gray-500 text-sm">
-          Join rooms based on your department and interests
-        </p>
       </div>
 
       {/* Rooms List */}
@@ -75,11 +72,11 @@ export const SuggestedRooms = ({
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-100"
           >
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-800">{room.name}</h3>
+              <h3 className="font-normal text-gray-500">{room.name}</h3>
               <p className="text-sm text-gray-500">{room.department}</p>
               <div className="flex items-center gap-2 mt-1">
-                <Users className="w-3 h-3 text-gray-400" />
-                <span className="text-xs text-gray-400">{room.memberCount} members</span>
+                {/* <Users className="w-3 h-3 text-gray-400" />
+                <span className="text-xs text-gray-400">{room.memberCount} members</span> */}
               </div>
             </div>
             
@@ -105,7 +102,7 @@ export const SuggestedRooms = ({
       </div>
 
       {/* OR Divider */}
-      <div className="relative my-8">
+      <div className="relative mt-24 my-8">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-200"></div>
         </div>
@@ -122,7 +119,7 @@ export const SuggestedRooms = ({
         
         <button
           onClick={() => onJoinWithCode && onJoinWithCode()}
-          className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#750015] text-[#750015] rounded-lg hover:bg-[#750015] hover:text-white transition-all font-medium"
+          className="bg-[#5a0010] inline-flex items-center gap-2 px-6 py-3 border-2 border-[#750015] text-[#ffffff] rounded-lg hover:bg-[#750015] hover:text-white transition-all font-medium"
         >
           <Key className="w-4 h-4" />
           Join with Code
