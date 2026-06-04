@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Send, Plus, Mic } from 'lucide-react';
 import { Logo } from '../components/Logo';
 
@@ -12,24 +12,9 @@ export const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-    const [userName, setUserName] = useState<string | null>(null);
 
-    useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem('varsigram-campus-user');
-      if (saved) {
-        const parsed = JSON.parse(saved) as { fullName?: string };
-        setUserName(parsed.fullName || null);
-        return;
-      }
-    } catch (e) {}
 
-    const session = window.sessionStorage.getItem('varsigram-campus-session');
-    if (session) {
-      const s = JSON.parse(session) as { email?: string };
-      setUserName(s.email || null);
-    }
-  }, []);
+
 
   const handleSend = () => {
     if (!input.trim()) return;
