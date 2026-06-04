@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, Plus, Mic } from 'lucide-react';
 import { Logo } from '../components/Logo';
 
@@ -12,6 +12,24 @@ export const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+    const [userName, setUserName] = useState<string | null>(null);
+
+    useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem('varsigram-campus-user');
+      if (saved) {
+        const parsed = JSON.parse(saved) as { fullName?: string };
+        setUserName(parsed.fullName || null);
+        return;
+      }
+    } catch (e) {}
+
+    const session = window.sessionStorage.getItem('varsigram-campus-session');
+    if (session) {
+      const s = JSON.parse(session) as { email?: string };
+      setUserName(s.email || null);
+    }
+  }, []);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -49,7 +67,7 @@ export const AIChat = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#F9F4F5]">
+    <div className="relative flex h-dvh max-h-dvh flex-col overflow-hidden bg-[#F9F4F5]">
       {/* Background Glows */}
 
       <div className="pointer-events-none absolute inset-0">
@@ -68,7 +86,7 @@ export const AIChat = () => {
         </button>
 
         <img
-          src="https://i.pravatar.cc/100"
+          src="/ajanaku.jpg"
           alt="profile"
           className="h-10 w-10 rounded-full border-2 border-[#750015] object-cover"
         />
@@ -89,7 +107,7 @@ export const AIChat = () => {
             </div>
 
             <h1 className="text-4xl font-semibold text-black">
-              Hello Mahmud,
+              Hello{userName ? `, ${userName.split(' ')[0]}` : ''}
             </h1>
 
             <p className="mt-8 text-lg font-semibold text-gray-700">
@@ -188,7 +206,7 @@ export const AIChat = () => {
 
       {/* Composer */}
 
-      <div className="relative z-10 px-4 pb-5">
+      <div className=" sticky z-10 px-4 pb-5">
         <div
           className="
             rounded-[28px]

@@ -63,7 +63,7 @@ export const CampusSidebar = ({ currentPage, onPageChange, onAIChatClick }: Camp
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 flex flex-col items-center justify-center space-y-2 px-4 py-6">
+          <nav className="flex-1 flex flex-col h-dvh items-center justify-center space-y-2 px-4">
             {sidebarLinks.map((link) => (
               <button
                 key={link.id}

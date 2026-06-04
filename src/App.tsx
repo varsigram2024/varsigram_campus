@@ -298,7 +298,7 @@ function App() {
 
   return (
     <SignUpProvider>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-dvh flex-col">
         <main className="flex-1">{content}</main>
         {bottomSection && (
           <footer className="shrink-0 sticky bottom-0">
