@@ -3,7 +3,7 @@
 export const Logo = () => {
   return (
     <div className="flex items-center gap-2 text-[#750015] transition-transform hover:scale-105">
-      <img src='../public/logo.png' alt="VARSIGRAM Logo" className="w-29 h-5" />
+      <img src='../logo.png' alt="VARSIGRAM Logo" className="w-29 h-5" />
     </div>
   );
 };

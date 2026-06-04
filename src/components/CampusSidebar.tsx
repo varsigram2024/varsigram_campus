@@ -63,7 +63,7 @@ export const CampusSidebar = ({ currentPage, onPageChange, onAIChatClick }: Camp
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 flex flex-col h-dvh items-center justify-center space-y-2 px-4">
+          <nav className="flex-1 flex flex-col items-center justify-center space-y-2 px-4">
             {sidebarLinks.map((link) => (
               <button
                 key={link.id}
@@ -86,7 +86,7 @@ export const CampusSidebar = ({ currentPage, onPageChange, onAIChatClick }: Camp
           
 
           {/* Footer */}
-          <div className="border-t border-gray-200 p-4">
+          <div className="flex border-t border-gray-200 p-4">
             <button
               onClick={onAIChatClick}
               className="w-full rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
