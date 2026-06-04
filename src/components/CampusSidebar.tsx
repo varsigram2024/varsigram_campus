@@ -51,12 +51,12 @@ export const CampusSidebar = ({ currentPage, onPageChange, onAIChatClick }: Camp
 
       {/* Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-screen w-64 transform bg-white shadow-xl transition-transform duration-300 ease-in-out z-40 lg:relative lg:transform-none ${
+        className={`flex fixed left-0 top-0 h-screen w-64 transform bg-white shadow-xl transition-transform duration-300 ease-in-out z-40 lg:relative lg:transform-none ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Sidebar Content */}
-        <div className="flex h-full flex-col">
+        <div className="flex flex-col">
           {/* Logo */}
           <div className="border-b border-gray-200 px-6 py-6">
             <Logo />
