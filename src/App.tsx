@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SignUpProvider } from './auth/SignUpContext';
 import { Welcome } from './pages/Welcome';
+import { CreateWorkspace } from './pages/CreateWorkspace';
 import { MultiStepSignUp } from './pages/MultiStepSignUp';
 import { Login } from './pages/Login';
 import { SuggestedRooms } from './pages/SuggestedRooms';
@@ -24,6 +25,7 @@ type CampusPage = 'campus' | 'faculty' | 'department';
 type BottomSection = 'campus' | 'rooms';
 type View =
   | 'welcome'
+    | 'create-workspace'
   | 'signup'
   | 'login'
   | 'suggested-rooms'
@@ -73,6 +75,7 @@ const getCampusPageFromPath = (pathname: string): CampusPage => {
 
 const getViewFromPath = (pathname: string): View => {
   if (pathname.includes('/ai-chat')) return 'ai-chat';
+    if (pathname.includes('/create-workspace')) return 'create-workspace';
   if (pathname.includes('/campus/classroom/lecture')) return 'classroom-lecture';
   if (pathname.includes('/campus/classroom')) return 'classroom';
   if (pathname.includes('/campus/library/folders')) return 'library-folders';
@@ -290,9 +293,19 @@ function App() {
         return <TestQuestions />;
       case 'ai-chat':
         return <AIChat />;
+            case 'create-workspace':
+              return (
+                <CreateWorkspace
+                  onBack={() => navigate('/welcome')}
+                  onCreateSuccess={() => {
+                    alert('Workspace created successfully!');
+                    navigate('/suggested-rooms');
+                  }}
+                />
+              );
       case 'welcome':
       default:
-        return <Welcome onGetStarted={() => navigate('/signup')} onLogin={() => navigate('/login')} />;
+        return <Welcome onGetStarted={() => navigate('/create-workspace')} onLogin={() => navigate('/login')} />;
     }
   })();
 
