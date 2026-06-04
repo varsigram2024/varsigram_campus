@@ -107,7 +107,7 @@ export const AIChat = () => {
             </div>
 
             <h1 className="text-4xl font-semibold text-black">
-              Hello{userName ? `, ${userName.split(' ')[0]}` : ''}
+              Hello
             </h1>
 
             <p className="mt-8 text-lg font-semibold text-gray-700">

@@ -299,7 +299,7 @@ function App() {
                   onBack={() => navigate('/welcome')}
                   onCreateSuccess={() => {
                     alert('Workspace created successfully!');
-                    navigate('/suggested-rooms');
+                    navigate('/campus');
                   }}
                 />
               );

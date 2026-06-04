@@ -9,24 +9,8 @@ type WelcomeProps = {
 export const Welcome = ({ onGetStarted, onLogin }: WelcomeProps) => {
   
   return (
-    <div className="relative min-h-screen bg-[#750015] text-white lg:flex">
-      <div className="hidden lg:flex lg:w-[44%] flex-col justify-between bg-gradient-to-br from-[#29000c] via-[#750015] to-[#ab243d] p-10 text-white">
-        <Logo />
-        <div className="relative flex-1 overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-8 backdrop-blur-sm">
-          <div className="absolute -right-16 top-8 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
-          <div className="absolute -bottom-20 left-10 h-60 w-60 rounded-full bg-black/15 blur-3xl" />
-          <p className="relative mt-8 text-sm uppercase tracking-[0.4em] text-white/75">
-            Varsigram Campus
-          </p>
-          <h1 className="relative mt-6 max-w-md text-5xl font-semibold leading-tight">
-            Connect with your campus community.
-          </h1>
-          <p className="relative mt-6 max-w-md text-base leading-7 text-white/85">
-            Discover conversations, build your profile, and join the flow of campus communication.
-          </p>
-        </div>
-        <p className="text-sm text-white/70">A clean student-first sign up experience.</p>
-      </div>
+    <div className="relative min-h-screen bg-[#750015] text-white flex-col lg:flex">
+     
 
        {/* Background Animation */}
       <div 
@@ -115,6 +99,10 @@ export const Welcome = ({ onGetStarted, onLogin }: WelcomeProps) => {
 
          
         </div>
+      </div>
+
+      <div className='flex items-center justify-center '>
+        <img src="./iphone 32.svg" alt="" className='flex items-center justify-center z-10' />
       </div>
     </div>
   );
